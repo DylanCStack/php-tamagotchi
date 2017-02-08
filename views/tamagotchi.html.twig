@@ -20,6 +20,16 @@
                     <td>{{ pet.rest }}</td>
                 </tr>
             </table>
+
+            <form action='/feed' method='post'>
+                <button type='submit'>Feed</button>
+            </form>
+            <form action='/play' method='post'>
+                <button type='submit'>Play with</button>
+            </form>
+            <form action='/sleep' method='post'>
+                <button type='submit'>Put to bed</button>
+            </form>
             <form action='/delete' method='post'>
                 <button type='submit'>Give up</button>
             </form>

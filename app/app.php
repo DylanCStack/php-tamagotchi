@@ -33,6 +33,27 @@
         return $app->redirect('/');
     });
 
+    $app->post('/feed', function() use ($app) {
+        $tamagotchi = Tamagotchi::getPet();
+        $tamagotchi->setFood($tamagotchi->getFood() + 5);
+
+        return $app->redirect('/');
+    });
+
+    $app->post('/play', function() use ($app) {
+        $tamagotchi = Tamagotchi::getPet();
+        $tamagotchi->setAttention($tamagotchi->getAttention() + 5);
+
+        return $app->redirect('/');
+    });
+
+    $app->post('/sleep', function() use ($app) {
+        $tamagotchi = Tamagotchi::getPet();
+        $tamagotchi->setRest($tamagotchi->getRest() + 5);
+
+        return $app->redirect('/');
+    });
+
 
     return $app;
 ?>
