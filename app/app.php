@@ -54,6 +54,19 @@
         return $app->redirect('/');
     });
 
+    $app->post('/time', function() use ($app) {
+        $tamagotchi = Tamagotchi::getPet();
+        $tamagotchi->setFood($tamagotchi->getFood() - 5);
+        $tamagotchi->setAttention($tamagotchi->getAttention() - 5);
+        $tamagotchi->setRest($tamagotchi->getRest() - 5);
+
+        if ($tamagotchi->isDead()) {
+            return $app['twig']->render('dead.html.twig', array( 'pet' => Tamagotchi::getPet() ));
+        } else {
+            return $app->redirect('/');
+        }
+    });
+
 
     return $app;
 ?>
