@@ -17,6 +17,12 @@
     ));
 
     $app->get('/', function() use ($app) {
+        $tamagotchi = Tamagotchi::getPet();
+        if ($tamagotchi) {
+            if ($tamagotchi->isDead()) {
+                return $app['twig']->render('dead.html.twig', array( 'pet' => Tamagotchi::getPet() ));
+            }
+        }
         return $app['twig']->render('tamagotchi.html.twig', array( 'pet' => Tamagotchi::getPet() ));
     });
 
@@ -35,36 +41,34 @@
 
     $app->post('/feed', function() use ($app) {
         $tamagotchi = Tamagotchi::getPet();
-        $tamagotchi->setFood($tamagotchi->getFood() + 5);
+        $tamagotchi->passTime();
+        $tamagotchi->setFood($tamagotchi->getFood() + 15);
 
         return $app->redirect('/');
     });
 
     $app->post('/play', function() use ($app) {
         $tamagotchi = Tamagotchi::getPet();
-        $tamagotchi->setAttention($tamagotchi->getAttention() + 5);
+        $tamagotchi->passTime();
+        $tamagotchi->setAttention($tamagotchi->getAttention() + 15);
 
         return $app->redirect('/');
     });
 
     $app->post('/sleep', function() use ($app) {
         $tamagotchi = Tamagotchi::getPet();
-        $tamagotchi->setRest($tamagotchi->getRest() + 5);
+        $tamagotchi->passTime();
+        $tamagotchi->setRest($tamagotchi->getRest() + 15);
 
         return $app->redirect('/');
     });
 
     $app->post('/time', function() use ($app) {
         $tamagotchi = Tamagotchi::getPet();
-        $tamagotchi->setFood($tamagotchi->getFood() - 5);
-        $tamagotchi->setAttention($tamagotchi->getAttention() - 5);
-        $tamagotchi->setRest($tamagotchi->getRest() - 5);
+        $tamagotchi->passTime();
 
-        if ($tamagotchi->isDead()) {
-            return $app['twig']->render('dead.html.twig', array( 'pet' => Tamagotchi::getPet() ));
-        } else {
-            return $app->redirect('/');
-        }
+        return $app->redirect('/');
+
     });
 
 

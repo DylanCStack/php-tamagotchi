@@ -9,9 +9,9 @@
         function __construct($name)
         {
             $this->name = $name;
-            $this->food = 10;
-            $this->attention = 10;
-            $this->rest = 10;
+            $this->food = 50;
+            $this->attention = 50;
+            $this->rest = 50;
         }
 
         function getName()
@@ -47,6 +47,13 @@
         function setRest($new_rest)
         {
             $this->rest = $new_rest;
+        }
+
+        function passTime()
+        {
+            $this->food -= 5;
+            $this->attention -= 5;
+            $this->rest -= 5;
         }
 
         function isDead()
