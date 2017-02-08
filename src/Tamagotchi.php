@@ -48,4 +48,19 @@
         {
             $this->rest = $new_rest;
         }
+
+        function save()
+        {
+            $_SESSION['pet'] = $this;
+        }
+
+        static function getPet()
+        {
+            return $_SESSION['pet'];
+        }
+
+        static function deletePet()
+        {
+            $_SESSION['pet'] = NULL;
+        }
     }

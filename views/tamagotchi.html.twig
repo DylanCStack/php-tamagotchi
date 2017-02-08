@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tamagotchi</title>
+    </head>
+    <body>
+        {% if pet != NULL %}
+            <h2>{{ pet.name }}</h2>
+            <table>
+                <tr>
+                    <th>Food</th>
+                    <td>{{ pet.food }}</td>
+                </tr>
+                <tr>
+                    <th>Attention</th>
+                    <td>{{ pet.attention }}</td>
+                </tr>
+                <tr>
+                    <th>Rest</th>
+                    <td>{{ pet.rest }}</td>
+                </tr>
+            </table>
+            <form action='/delete' method='post'>
+                <button type='submit'>Give up</button>
+            </form>
+        {% else %}
+            <form action='/tamagotchi' method='post'>
+                <label for='name'>Name</label>
+                <input id='name' name='name' type='text'>
+
+                <button type='submit'>Give birth</button>
+            </form>
+        {% endif %}
+    </body>
+</html>
